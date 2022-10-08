@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Digital Clock</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Amazing</h1>
+        <div class="wave">
+            <span style="--item:1; --c:#04fc43;" >D</span><span style="--item:2; --c:#04fc43;" >I</span><span style="--item:3; --c:#04fc43;" >G</span><span style="--item:4; --c:#04fc43;" >I</span><span style="--item:5; --c:#04fc43;" >T</span><span style="--item:6; --c:#04fc43;" >A</span><span style="--item:7; --c:#04fc43;" >L</span>
+            <span style="--item:8" > </span>
+            <span style="--item:9; --c:#fee800;" >C</span><span style="--item:10; --c:#fee800;" >L</span><span style="--item:11; --c:#fee800;" >O</span><span style="--item:12; --c:#fee800;" >C</span><span style="--item:13; --c:#fee800;" >K</span>
+            <span style="--item:14" > </span>
+            <span style="--item:15; --c:#ff2972;" >D</span><span style="--item:16; --c:#ff2972;" >E</span><span style="--item:17; --c:#ff2972;" >S</span><span style="--item:18; --c:#ff2972;" >I</span><span style="--item:19; --c:#ff2972;" >G</span><span style="--item:20; --c:#ff2972;" >N</span>
+        </div>
+        <div id="time">
+            <div class="circle" style="--clr:#ff2972">
+                <div class="dots sec_dot"></div>
+                <svg>
+                    <circle cx="120" cy="120" r="120" id="ss"></circle>
+                </svg>
+            </div>
+            <div class="circle" style="--clr:#fee800">
+                <div class="dots min_dot"></div>
+                <svg>
+                    <circle cx="100" cy="100" r="100" id="mm"></circle>
+                </svg>
+            </div>
+            <div class="circle" style="--clr:#04fc43">
+                <div class="dots hr_dot"></div>
+                <svg>
+                    <circle cx="80" cy="80" r="80" id="hh"></circle>
+                </svg>
+            </div>
+            <div class="timeBx">
+                <div id="hours" style="--c:#04fc43;">00</div>
+                <div id="minutes" style="--c:#fee800;">00</div>
+                <div id="seconds" style="--c:#ff2972;">00</div>
+                <div class="ap" style="--c:#fff;">
+                    <div id="ampm"></div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>Luiz Jordany</p>
+        </footer>
+        <script>
+            setInterval(()=>{
+                let hh = document.getElementById('hh')
+                let mm = document.getElementById('mm')
+                let ss = document.getElementById('ss')
+                let sec_dot = document.querySelector('.sec_dot')
+                let min_dot = document.querySelector('.min_dot')
+                let hr_dot = document.querySelector('.hr_dot')
+                let hours = document.getElementById('hours')
+                let minutes = document.getElementById('minutes')
+                let seconds = document.getElementById('seconds')
+                let ampm = document.getElementById('ampm')
+
+                let h = new Date().getHours()
+                let m = new Date().getMinutes()
+                let s = new Date().getSeconds()
+
+                let am = h>=12 ? "PM" : "AM" 
+
+                // convert 24hr clock to 12hr clock
+                if (h > 12){
+                    h = h - 12
+                }
+
+                //add zero before single digit number
+                h = (h < 10) ? "0"+h : h
+                m = (m < 10) ? "0"+m : m
+                s = (s < 10) ? "0"+s : s
+
+                hours.innerHTML = h
+                minutes.innerHTML = m
+                seconds.innerHTML = s
+                ampm.innerHTML = am
+
+                hh.style.strokeDashoffset = 510 - (510 * h) / 12
+                //12 hrs clock
+                mm.style.strokeDashoffset = 630 - (630 * m) / 60
+                //60 minutes
+                ss.style.strokeDashoffset = 760 - (760 * s) / 60
+                //60 seconds clock
+
+                sec_dot.style.transform = `rotateZ(${s * 6}deg)`
+                // 360 / 60sec = 6
+                min_dot.style.transform = `rotateZ(${m * 6}deg)`
+                // 360 / 60min = 6
+                hr_dot.style.transform = `rotateZ(${h * 30}deg)`
+                // 360 / 12hr = 30
+            })
+        </script>
+    </body>
+</html>
