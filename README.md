@@ -2,7 +2,7 @@
 <!-- https://ojordany.github.io/digitalClock/ -->
 <div align="center">
  <a href="https://ojordany.github.io/digitalClock/" alt='next'><img align=""src="https://cdn.discordapp.com/attachments/897609680073941012/963207775045971988/pngwing-edit.png" alt="clique-cursor" width="100px"></a>
- <h2>Click here to view my playlist</h2>
+ <h2>Click here to see the project</h2>
 </div>
 
 
